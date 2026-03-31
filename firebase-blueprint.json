@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user with role-based access",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["Super Admin", "Branch Staff"] },
+        "branch": { "type": "string", "enum": ["Imus", "Quezon City"] },
+        "permissions": { "type": "array", "items": { "type": "string" } },
+        "active": { "type": "boolean" }
+      },
+      "required": ["name", "email", "role", "active"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Musical instrument or accessory in inventory",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string" },
+        "name": { "type": "string" },
+        "brand": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "costPrice": { "type": "number" },
+        "stockQty": { "type": "number" },
+        "lowStockThreshold": { "type": "number" },
+        "branch": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["sku", "name", "price", "stockQty", "branch"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Sales record",
+      "type": "object",
+      "properties": {
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "tax": { "type": "number" },
+        "discount": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "staffName": { "type": "string" },
+        "branch": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["items", "total", "branch", "timestamp"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Luthier workshop repair booking",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "contact": { "type": "string" },
+        "instrumentType": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Ongoing", "Completed", "Claimed"] },
+        "progress": { "type": "number" },
+        "branch": { "type": "string" }
+      },
+      "required": ["customerName", "instrumentType", "status", "branch"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Inventory items"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Sales records"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Workshop bookings"
+    }
+  }
+}

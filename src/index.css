@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Barlow Condensed", "IBM Plex Sans Condensed", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-background: #0D0D0D;
+  --color-surface: #1A1A1A;
+  --color-surface-elevated: #222222;
+  --color-accent: #DC2626;
+  --color-accent-hover: #B91C1C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #888888;
+  --color-text-muted: #555555;
+  --color-border: #2A2A2A;
+  --color-chart-primary: #F87171;
+  --color-chart-secondary: #3D3D3D;
+  --color-status-green: #22C55E;
+  --color-status-red: #DC2626;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply uppercase tracking-wider;
+  }
+}
+
+@layer components {
+  .fermata-card {
+    @apply bg-surface border border-border rounded-none p-5 md:p-6;
+  }
+  
+  .fermata-button-primary {
+    @apply bg-accent text-white uppercase font-semibold py-3 px-6 rounded-none transition-colors hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .fermata-button-secondary {
+    @apply bg-transparent border border-text-muted text-white uppercase font-semibold py-3 px-6 rounded-none transition-colors hover:bg-surface-elevated;
+  }
+  
+  .fermata-input {
+    @apply bg-surface border border-border text-white px-4 py-2 rounded-none focus:outline-none focus:border-accent placeholder:text-text-muted;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap');

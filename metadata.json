@@ -1,0 +1,7 @@
+{
+  "name": "Fermata Management System",
+  "description": "A unified digital platform for Fermata Musical Instrument Shop covering inventory, POS, repair booking, and Business analytics.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
